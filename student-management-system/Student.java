@@ -1,42 +1,47 @@
-class Student {
+public class Student {
+
     private int id;
     private String name;
-    private int age;
-    private double marks;
+    private double marks1;
+    private double marks2;
+    private double marks3;
 
-    Student(int id, String name, int age, double marks) {
+    public Student(int id, String name, double marks1, double marks2, double marks3){
         this.id = id;
         this.name = name;
-        this.age = age;
-        this.marks = marks;
+        this.marks1 = marks1;
+        this.marks2 = marks2;
+        this.marks3 = marks3;
     }
 
     public int getId(){
-        return id; 
+        return id;
     }
+
     public String getName(){
-        return name; 
+        return name;
     }
-    public int getAge(){
-        return age; 
-    }
-    public double getMarks(){
-        return marks; 
-    }
-    public void setMarks(double marks){
-        this.marks = marks; 
+
+    public double getPercentage(){
+        return (marks1 + marks2 + marks3)/ 3.0;
     }
 
     public String getGrade() {
-        if (marks >= 90) return "A";
-        else if (marks >= 75) return "B";
-        else if (marks >= 60) return "C";
-        else if (marks >= 50) return "D";
-        else return "F";
+        double percentage = getPercentage();
+        if (percentage >= 90)
+            return "A+";
+        if (percentage >= 80)
+            return "A";
+        if (percentage >= 70)
+            return "B";
+        if (percentage >= 60)
+            return "C";
+        if (percentage >= 50)
+            return "D";
+        return "F";
     }
 
-    @Override
     public String toString() {
-        return String.format("%-4d %-15s %-4d %-6.1f %s", id, name, age, marks, getGrade());
+        return String.format("%-5d %-15s %-10.2f %-5s", id, name, getPercentage(), getGrade());
     }
 }
